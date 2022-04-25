@@ -2,16 +2,22 @@
 //! This modules brings in the `Flow` concept and logic around it.
 //!
 
+use super::Step;
+
 #[derive(Debug)]
 pub struct Flow {
     pub name: String,
     pub description: String,
-    // to-be-cont'd
+    pub steps: Vec<Step>,
 }
 
 impl Flow {
     pub fn new(name: String, description: String) -> Self {
-        Self { name, description }
+        Self {
+            name,
+            description,
+            steps: vec![],
+        }
     }
 }
 
@@ -23,8 +29,9 @@ mod tests {
     fn basics() {
         let name = "someName";
         let desc = "someDesc";
-        let step = Flow::new(name.into(), desc.into());
-        assert_eq!(step.name, name);
-        assert_eq!(step.description, desc);
+        let flow = Flow::new(name.into(), desc.into());
+        assert_eq!(flow.name, name);
+        assert_eq!(flow.description, desc);
+        assert_eq!(flow.steps.len(), 0)
     }
 }
